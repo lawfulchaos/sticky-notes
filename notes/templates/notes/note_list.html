@@ -1,0 +1,15 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+    {% for note in notes %}
+        <div class="col-md-4">
+            <div class="note {{ note.color }}">
+                <div class="date">
+                    <p>Опубликовано: {{ note.published_date }}</p>
+                </div>
+                <h1><a href="{% url 'note_details' pk=note.pk %}">{{ note.title }}</a></h1>
+                <p>{{ note.text|linebreaksbr }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

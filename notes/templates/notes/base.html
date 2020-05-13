@@ -1,0 +1,25 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>Notepad--</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Merriweather&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'notes/css/style.css' %}">
+
+    </head>
+    <body>
+        <a href="{% url 'note_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        <div class="page-header">
+            <h1> <a href="/">Notes WIP</a></h1>
+        </div>
+
+        <div class="content container">
+            <div class="row">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
