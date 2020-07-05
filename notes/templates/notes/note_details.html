@@ -3,8 +3,9 @@
 {% block content %}
     <div class="note {{ note.color }}">
         {% if note.published_date %}
-            <div class="date">
+            <div class="note_info">
                 {{ note.published_date }}
+                Автор: <a href="{% url 'note_by_author' user=note.author %}">{{ note.author }}</a>
             </div>
         {% endif %}
         <h1>{{ note.title }}</h1>

@@ -1,11 +1,19 @@
 {% extends 'notes/base.html' %}
 
 {% block content %}
+    {% if author_name %}
+        <h1>{{author_name}} notes</h1>
+    {% else %}
+        <h1>Public notes</h1>
+    {% endif %}
     {% for note in notes %}
         <div class="col-md-4">
             <div class="note {{ note.color }}">
-                <div class="date">
-                    <p>Опубликовано: {{ note.published_date }}</p>
+                <div class="note_info">
+                    <p>
+                        Опубликовано: {{ note.published_date }}
+                        Автор: <a href="{% url 'note_by_author' user=note.author %}">{{ note.author }}</a>
+                    </p>
                 </div>
                 <h1><a href="{% url 'note_details' pk=note.pk %}">{{ note.title }}</a></h1>
                 <p>{{ note.text|linebreaksbr }}</p>
