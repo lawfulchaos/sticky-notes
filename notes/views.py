@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-
 from random import choice
 colors = ["red_note", "green_note", "blue_note", "purple_note", "yellow_note"]
 
@@ -42,14 +41,12 @@ def note_details(request, pk):
    note = get_object_or_404(Note, pk=pk)
    return render(request, 'notes/note_details.html', {'note': note})
 
-# Create your views here.
 class NoteUpdate(UpdateView):
     model = Note
     fields = ['title', 'text']
     template_name_suffix = '_update_form'
 
-    def form_valid(self, form):
-        return redirect('/')
+    success_url = reverse_lazy('note_list')
 
 
 class NoteDelete(DeleteView):
