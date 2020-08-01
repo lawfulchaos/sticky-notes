@@ -1,0 +1,17 @@
+<div class="note {{ note.color }}">
+    <div class="note_info">
+        <div align="right">
+            {% if user == note.author %}
+                <a href="" data-toggle="tooltip" title="Mark as done"><span style="font-size: 15px" class="glyphicon glyphicon-ok"></span></a>
+                <a href={% url 'note_edit' pk=note.pk %} data-toggle="tooltip" title="Edit"><span style="font-size: 15px" class="glyphicon glyphicon-pencil"></span></a>
+                <a href={% url 'note_delete' pk=note.pk %} data-toggle="tooltip" title="Delete"><span style="font-size: 15px" class="glyphicon glyphicon-remove"></span></a>
+            {% endif %}
+        </div>
+        <p>
+            Опубликовано: {{ note.published_date }}
+            Автор: <a href="{% url 'note_by_author' user=note.author %}">{{ note.author }}</a>
+        </p>
+    </div>
+    <h1><a href="{% url 'note_details' pk=note.pk %}">{{ note.title }}</a></h1>
+    <p>{{ note.text|linebreaksbr }}</p>
+</div>

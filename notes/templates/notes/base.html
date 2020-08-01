@@ -3,16 +3,31 @@
 <html>
     <head>
         <title>Notepad--</title>
+        <link rel="shortcut icon" type="image/png" href="{% static 'notes/img/favicon.ico' %}"/>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href="https://fonts.googleapis.com/css?family=Merriweather&subset=latin,cyrillic" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="{% static 'notes/css/style.css' %}">
 
+        <script>
+            $(document).ready(function(){
+              $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
+
     </head>
     <body>
         <a href="{% url 'note_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="top-menu"><span class="glyphicon glyphicon-log-out"></span></a>
+        {% else %}
+            <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-log-in"></span></a>
+        {% endif %}
         <div class="page-header">
             <h1> <a href="/">Notes WIP</a></h1>
+            {% if user.is_authenticated %}
+                <p class="text-right font-weight-light">Welcome, {{ user }} </p>
+            {% endif %}
         </div>
 
         <div class="content container">
